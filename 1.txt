@@ -1,0 +1,48 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.concurrent.TimeUnit;
+
+public class DatePickerAutomation {
+
+    public static void main(String[] args) {
+       WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+
+        try {
+      
+            driver.manage().window().maximize();
+
+
+            driver.get("https://jqueryui.com/datepicker/");
+
+         
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            WebElement iframe = driver.findElement(By.className("demo-frame"));
+            driver.switchTo().frame(iframe);
+
+
+            WebElement datepicker = driver.findElement(By.id("datepicker"));
+            datepicker.click();
+
+            WebElement nextMonthButton = driver.findElement(By.xpath("//span[@class='ui-icon ui-icon-circle-triangle-e']"));
+            nextMonthButton.click();
+
+        
+            WebElement date22 = driver.findElement(By.xpath("//a[text()='22']"));
+            date22.click();
+
+
+            String selectedDate = date22.getText();
+            System.out.println("Selected Date: " + selectedDate);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+          
+            driver.quit();
+        }
+    }
+}

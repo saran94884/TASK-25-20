@@ -1,0 +1,58 @@
+package learning.java;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Sample {
+
+	public static void main(String[] args) {
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+
+
+            
+            driver.manage().window().maximize();
+
+
+            driver.get("https://www.guvi.in/");
+
+           
+			WebElement signupButton = driver
+					.findElement(By.xpath("//a[@class='nav-link btn btn-primary text-white px-4']"));
+            signupButton.click();
+
+         
+			WebElement nameField = driver.findElement(By.id("name"));
+            nameField.sendKeys("saran");
+
+            WebElement emailField = driver.findElement(By.id("email"));
+			emailField.sendKeys("email@123.com");
+
+            WebElement passwordField = driver.findElement(By.id("password"));
+			passwordField.sendKeys("password123");
+
+            WebElement phonenumberField = driver.findElement(By.id("mobileNumber"));
+			phonenumberField.sendKeys("8984899844");
+
+			WebElement signupSubmitButton = driver.findElement(By.id("signup-btn"));
+            signupSubmitButton.click();
+
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+         
+            driver.quit();
+        }
+    }
+
+
+
+
